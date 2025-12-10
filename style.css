@@ -1,0 +1,898 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a3a, #0d1520);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(30, 40, 60, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        h1 {
+            color: #4fc3f7;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            color: #b0bec5;
+            font-size: 1.1rem;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .matrix-section {
+            background: rgba(40, 50, 70, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .matrix-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .matrix-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #64b5f6;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #37474f;
+        }
+        
+        .size-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .size-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .size-btn {
+            padding: 10px 20px;
+            background: rgba(30, 40, 60, 0.9);
+            border: 2px solid #37474f;
+            border-radius: 8px;
+            color: #b0bec5;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .size-btn:hover {
+            background: rgba(50, 70, 100, 0.9);
+            border-color: #64b5f6;
+        }
+        
+        .size-btn.active {
+            background: #1976d2;
+            border-color: #64b5f6;
+            color: white;
+            box-shadow: 0 0 15px rgba(25, 118, 210, 0.5);
+        }
+        
+        .dimension-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .dimension-selector select {
+            padding: 8px 15px;
+            background: rgba(30, 40, 60, 0.9);
+            border: 1px solid #546e7a;
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 1rem;
+        }
+        
+        .matrix-input {
+            margin-top: 20px;
+        }
+        
+        .matrix-grid {
+            display: inline-grid;
+            gap: 8px;
+            padding: 15px;
+            background: rgba(20, 30, 48, 0.7);
+            border-radius: 10px;
+            margin-top: 10px;
+            border: 1px solid #37474f;
+        }
+        
+        .matrix-cell {
+            width: 60px;
+            height: 50px;
+            text-align: center;
+            background: rgba(30, 40, 60, 0.9);
+            border: 1px solid #546e7a;
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+        
+        .matrix-cell:focus {
+            outline: none;
+            border-color: #64b5f6;
+            box-shadow: 0 0 8px rgba(100, 181, 246, 0.5);
+            background: rgba(40, 60, 90, 0.9);
+        }
+        
+        .controls-section {
+            background: rgba(40, 50, 70, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.2s ease-out;
+        }
+        
+        .controls-title {
+        color: #64b5f6;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        font-size: 1.5rem;
+        }
+
+        .controls-section h2 {
+            color: #4fc3f7;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #37474f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+        }
+
+        .operations {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .operations {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .calculator {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .operations {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .operation-btn {
+            padding: 15px 10px;
+            background: rgba(30, 40, 60, 0.9);
+            border: 2px solid #37474f;
+            border-radius: 10px;
+            color: #b0bec5;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .operation-btn:hover {
+            background: rgba(50, 70, 100, 0.9);
+            transform: translateY(-3px);
+        }
+        
+        .operation-btn.active {
+            background: #1976d2;
+            border-color: #64b5f6;
+            color: white;
+            box-shadow: 0 0 15px rgba(25, 118, 210, 0.5);
+        }
+        
+        .operation-btn i {
+            font-size: 1.5rem;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #1976d2, #0d47a1);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(13, 71, 161, 0.4);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .calculate-btn:hover {
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(13, 71, 161, 0.6);
+        }
+        
+        .calculate-btn:active {
+            transform: translateY(1px);
+        }
+        
+        /* ===== STYLE HASIL ===== */
+        .result-section {
+            background: rgba(40, 50, 70, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+        }
+
+        .result-section h2 {
+            color: #4fc3f7;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #37474f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+        }
+
+        /* DUA KOLOM HASIL */
+        .result-dual-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .result-dual-column {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .result-column {
+            background: rgba(30, 40, 60, 0.9);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #37474f;
+        }
+
+        .column-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #546e7a;
+            color: #64b5f6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fraction-column .column-title {
+            color: #4fc3f7;
+        }
+
+        .decimal-column .column-title {
+            color: #69f0ae;
+        }
+
+        .matrix-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .matrix-bracket {
+            font-size: 4rem;
+            color: #64b5f6;
+            font-weight: bold;
+            margin: 0 15px;
+            align-self: center;
+        }
+
+        .result-matrix {
+            padding: 20px;
+            background: rgba(20, 30, 48, 0.7);
+            border-radius: 10px;
+            border: 1px solid #37474f;
+            min-height: 120px;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .result-placeholder {
+            color: #78909c;
+            font-style: italic;
+            padding: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* GRID HASIL */
+        .result-grid {
+            display: inline-grid;
+            gap: 10px;
+            padding: 15px;
+        }
+
+        /* STYLE UNTUK PECAHAN */
+        .fraction-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            min-height: 60px;
+        }
+
+        .fraction-numerator {
+            border-bottom: 2px solid #64b5f6;
+            padding: 5px 10px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .fraction-denominator {
+            padding: 5px 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .whole-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+
+        /* STYLE UNTUK DESIMAL */
+        .decimal-cell {
+            width: 80px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(40, 50, 70, 0.9);
+            border: 2px solid #546e7a;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* INFO HASIL */
+        .result-info {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(30, 40, 60, 0.9);
+            border-radius: 10px;
+            border: 2px solid #37474f;
+            text-align: center;
+        }
+
+        .operation-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4fc3f7;
+            margin-bottom: 10px;
+        }
+
+        .size-label {
+            font-size: 1.1rem;
+            color: #b0bec5;
+            margin-bottom: 15px;
+        }
+
+        .success-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #69f0ae;
+            padding: 12px;
+            background: rgba(105, 240, 174, 0.1);
+            border-radius: 8px;
+            border: 2px solid #69f0ae;
+        }   
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #78909c;
+            font-size: 2rem;
+            border-top: 1px solid #37474f;
+        }
+        
+        .clear-btn {
+            padding: 12px;
+            background: rgba(255, 82, 82, 0.2);
+            border: 2px solid #ff5252;
+            border-radius: 8px;
+            color: #ff5252;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            margin-top: 15px;
+            width: 100%;
+        }
+        
+        .clear-btn:hover {
+            background: rgba(255, 82, 82, 0.3);
+        }
+
+        /* Responsif untuk kartu pecahan/desimal */
+        @media (max-width: 768px) {
+            .result-matrix > div[style*="flex-wrap: wrap"] {
+                flex-direction: column;
+            }
+            
+            .result-matrix > div[style*="flex-wrap: wrap"] > div {
+                max-width: 100% !important;
+                margin-bottom: 20px;
+            }
+        }
+        /* ===== ANIMASI UTAMA ===== */
+
+/* Animasi slide down untuk header */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animasi fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animasi fade in dengan delay */
+@keyframes fadeInDelayed {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animasi pulse untuk pesan */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(25, 118, 210, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(25, 118, 210, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(25, 118, 210, 0);
+    }
+}
+
+/* Animasi bounce untuk tombol */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Animasi glow untuk elemen aktif */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(25, 118, 210, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(25, 118, 210, 0.8);
+    }
+}
+
+/* Animasi rotate untuk loading */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animasi slide in dari kiri */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animasi slide in dari kanan */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animasi scale in */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animasi float */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ===== APLIKASI ANIMASI KE ELEMEN ===== */
+
+/* Animasi untuk matrix section */
+.matrix-section {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.matrix-section:nth-child(1) {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.matrix-section:nth-child(2) {
+    animation: slideInRight 0.8s ease-out;
+}
+
+/* Animasi untuk controls section */
+.controls-section {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Animasi untuk result section */
+.result-section {
+    animation: fadeInDelayed 1.2s ease-out;
+    animation-fill-mode: both;
+    animation-delay: 0.3s;
+}
+
+/* Animasi untuk kolom hasil */
+.result-column {
+    animation: scaleIn 0.6s ease-out;
+}
+
+.fraction-column {
+    animation-delay: 0.2s;
+}
+
+.decimal-column {
+    animation-delay: 0.4s;
+}
+
+/* Animasi untuk tombol aktif */
+.size-btn.active {
+    animation: glow 2s infinite;
+}
+
+.operation-btn.active {
+    animation: glow 2s infinite;
+}
+
+/* Animasi untuk tombol hitung */
+.calculate-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.calculate-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        transparent 20%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 80%
+    );
+    transform: rotate(30deg);
+    transition: transform 0.5s;
+}
+
+.calculate-btn:hover::after {
+    transform: rotate(30deg) translateX(100%);
+}
+
+/* Animasi untuk sel matrix */
+.matrix-cell {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.matrix-cell:focus {
+    animation: pulse 1.5s infinite;
+}
+
+/* Animasi untuk placeholder hasil */
+.result-placeholder {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Animasi untuk informasi hasil */
+.result-info {
+    animation: fadeInDelayed 0.8s ease-out;
+}
+
+/* Animasi untuk pesan sukses/error */
+.error-message,
+.success-message {
+    animation: slideInLeft 0.5s ease-out, pulse 2s infinite 0.5s;
+}
+
+/* Animasi untuk tombol clear */
+.clear-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.clear-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 82, 82, 0.4);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.clear-btn:focus:not(:active)::before {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+/* Animasi untuk pecahan */
+.fraction-display {
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.fraction-display:hover {
+    transform: scale(1.1);
+}
+
+/* Animasi untuk angka bulat */
+.whole-number {
+    animation: bounce 1s ease;
+}
+
+/* Animasi untuk sel desimal */
+.decimal-cell {
+    transition: all 0.3s;
+    position: relative;
+}
+
+.decimal-cell:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(105, 240, 174, 0.3);
+}
+
+/* Animasi untuk label sukses */
+.success-label {
+    animation: pulse 2s infinite;
+}
+
+/* Animasi untuk grid hasil */
+.result-grid > * {
+    animation: fadeInDelayed 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+/* Delay bertahap untuk sel grid hasil */
+.result-grid > *:nth-child(1) { animation-delay: 0.1s; }
+.result-grid > *:nth-child(2) { animation-delay: 0.2s; }
+.result-grid > *:nth-child(3) { animation-delay: 0.3s; }
+.result-grid > *:nth-child(4) { animation-delay: 0.4s; }
+.result-grid > *:nth-child(5) { animation-delay: 0.5s; }
+.result-grid > *:nth-child(6) { animation-delay: 0.6s; }
+.result-grid > *:nth-child(7) { animation-delay: 0.7s; }
+.result-grid > *:nth-child(8) { animation-delay: 0.8s; }
+.result-grid > *:nth-child(9) { animation-delay: 0.9s; }
+
+/* Animasi untuk bracket matrix */
+.matrix-bracket {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Animasi loading subtle */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Efek shimmer untuk matrix input */
+.matrix-grid {
+    background: linear-gradient(
+        90deg,
+        rgba(20, 30, 48, 0.7) 25%,
+        rgba(30, 40, 60, 0.7) 37%,
+        rgba(20, 30, 48, 0.7) 63%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+/* Responsif animasi */
+@media (max-width: 768px) {
+    .matrix-section:nth-child(1),
+    .matrix-section:nth-child(2) {
+        animation: fadeIn 0.8s ease-out;
+    }
+    
+    .result-grid > * {
+        animation-delay: 0s !important;
+        animation-duration: 0.3s;
+    }
+}
+
+/* Animasi untuk konten yang muncul */
+.fade-in {
+    animation: fadeInDelayed 0.6s ease-out;
+}
+
+/* Animasi untuk penghapusan */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-out;
+}
+/* ===== PESAN ERROR DAN SUKSES ===== */
+.error-message, 
+.success-message {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    display: none;
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.error-message {
+    background: rgba(244, 67, 54, 0.2);
+    border: 2px solid #f44336;
+    color: #ffcdd2;
+}
+
+.success-message {
+    background: rgba(76, 175, 80, 0.2);
+    border: 2px solid #4caf50;
+    color: #c8e6c9;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}

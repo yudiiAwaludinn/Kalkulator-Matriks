@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Matriks Interaktif</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><i class="fas fa-calculator"></i> Kalkulator Matriks</h1>
+        <p class="subtitle"> Kalkulator matriks interaktif berbagai operasi </p>
+      </header>
+    <div class="main-content">
+        <div class="matrix-section">
+          <h2><i class="fas fa-th"></i> Matriks A</h2>
+          <div class="size-selector">
+            <div class="size-buttons">
+              <button class="size-btn active" data-size="2x2" data-matrix="A"> 2 x 2 </button>
+              <button class="size-btn" data-size="3x3" data-matrix="A">3 x 3</button>
+            </div>
+            <div class="dimension-selector">
+              <span>Atau pilih ukuran:</span>
+              <select id="rowsA">
+                <option value="2">2 baris</option>
+                <option value="3">3 baris</option>
+                <option value="4">4 baris</option>
+              </select>
+              <span>x</span>
+              <select id="colsA">
+                <option value="2">2 kolom</option>
+                <option value="3">3 kolom</option>
+                <option value="4">4 kolom</option>
+              </select>
+            </div>
+          </div>
+          <div class="matrix-input" id="matrixAInput">
+          </div>
+          <button class="clear-btn" id="clearA">
+            <i class="fas fa-eraser"></i> Kosongkan Matriks A
+          </button>
+        </div>
+
+        <div class="matrix-section">
+          <h2><i class="fas fa-th"></i> Matriks B</h2>
+          <div class="size-selector">
+            <div class="size-buttons">
+              <button class="size-btn active" data-size="2x2" data-matrix="B"> 2 x 2 </button>
+              <button class="size-btn" data-size="3x3" data-matrix="B"> 3 x 3 </button>
+            </div>
+            <div class="dimension-selector">
+              <span>Atau pilih ukuran:</span>
+              <select id="rowsB">
+                <option value="2">2 baris</option>
+                <option value="3">3 baris</option>
+                <option value="4">4 baris</option>
+              </select>
+              <span>x</span>
+              <select id="colsB">
+                <option value="2">2 kolom</option>
+                <option value="3">3 kolom</option>
+                <option value="4">4 kolom</option>
+              </select>
+            </div>
+          </div>
+          <div class="matrix-input" id="matrixBInput">
+          </div>
+          <button class="clear-btn" id="clearB">
+            <i class="fas fa-eraser"></i> Kosongkan Matriks B
+          </button>
+        </div>
+      </div>
+
+      <div class="controls-section">
+        <div class="controls-title">
+            <h2><i class="fas fa-sliders-h"></i>Operasi</h2>
+        </div>
+        <div class="operations">
+          <button class="operation-btn active" data-operation="add">
+            <i class="fas fa-plus"></i>
+            <span>Penjumlahan</span>
+          </button>
+          <button class="operation-btn" data-operation="subtract">
+            <i class="fas fa-minus"></i>
+            <span>Pengurangan</span>
+          </button>
+          <button class="operation-btn" data-operation="multiply">
+            <i class="fas fa-times"></i>
+            <span>Perkalian</span>
+          </button>
+          <button class="operation-btn" data-operation="determinant">
+            <i class="fas fa-calculator"></i>
+            <span>Determinan</span>
+          </button>
+          <button class="operation-btn" data-operation="inverse">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Invers</span>
+          </button>
+          <button class="operation-btn" data-operation="transpose">
+            <i class="fas fa-arrows-alt-v"></i>
+            <span>Transpos</span>
+          </button>
+        </div>
+
+        <div class="matrix-selector" style="margin-bottom: 20px">
+          <label for="selectedMatrix" style="display: block; margin-bottom: 10px; color: #b0bec5" >
+            <i class="fas fa-th-list"></i> Pilih matriks untuk operasi determinan, invers, dan transpos:
+          </label>
+          <select id="selectedMatrix" style="padding: 10px; width: 100%; background: rgba(30, 40, 60, 0.9); border: 1px solid #546e7a; border-radius: 6px; color: #e0e0e0;" >
+            <option value="A">Matriks A</option>
+            <option value="B">Matriks B</option>
+          </select>
+        </div>
+
+        <button class="calculate-btn" id="calculateBtn">
+          <i class="fas fa-bolt"></i> Hitung
+        </button>
+      </div>
+
+      <!-- KOLOM HASIL -->
+      <div class="result-section">
+        <h2><i class="fas fa-poll"></i> Hasil</h2>
+
+        <div class="result-dual-column">
+          <!-- KOLOM PECAHAN -->
+          <div class="result-column fraction-column">
+            <div class="column-title">
+              <i class="fas fa-divide"></i> Pecahan
+            </div>
+            <div class="matrix-container">
+              <span class="matrix-bracket">[</span>
+              <div class="result-matrix" id="fractionResult">
+                <div class="result-placeholder">
+                  Hasil operasi akan ditampilkan di sini
+                </div>
+              </div>
+              <span class="matrix-bracket">]</span>
+            </div>
+          </div>
+
+          <!-- KOLOM DESIMAL -->
+          <div class="result-column decimal-column">
+            <div class="column-title">
+              <i class="fas fa-calculator"></i> Desimal
+            </div>
+            <div class="matrix-container">
+              <span class="matrix-bracket">[</span>
+              <div class="result-matrix" id="decimalResult">
+                <div class="result-placeholder">
+                  Hasil operasi akan ditampilkan di sini
+                </div>
+              </div>
+              <span class="matrix-bracket">]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-info" id="resultInfo"></div>
+        <div class="error-message" id="errorMessage" style="display: none">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span id="errorText"></span>
+        </div>
+        <div class="success-message" id="successMessage" style="display: none">
+          <i class="fas fa-check-circle"></i> <span id="successText"></span>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>
+          Kalkulator Matriks Interaktif &copy; 2025 | Dibuat oleh Sandy, Yudi,
+          Aura, Sri Wulan
+        </p>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
