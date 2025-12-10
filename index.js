@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
             valueBox.style.height = '80px';
             valueBox.style.margin = '0 auto';
             
-            valueBox.textContent = result.values[0][0].toFixed(4);
+            valueBox.textContent = result.values[0][0].toFixed(2);
             
             valueDiv.appendChild(valueBox);
             decimalResult.appendChild(valueDiv);
@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 for (let j = 0; j < result.cols; j++) {
                     const cell = document.createElement('div');
                     cell.className = 'decimal-cell';
-                    cell.textContent = result.values[i][j].toFixed(4);
+                    cell.textContent = result.values[i][j].toFixed(2);
                     
                     grid.appendChild(cell);
                 }

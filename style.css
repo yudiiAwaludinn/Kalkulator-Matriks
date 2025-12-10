@@ -458,11 +458,9 @@
         
         .footer {
             text-align: center;
-            margin-top: 40px;
             padding: 20px;
             color: #78909c;
             font-size: 2rem;
-            border-top: 1px solid #37474f;
         }
         
         .clear-btn {
@@ -778,7 +776,6 @@
     animation: bounce 1s ease;
 }
 
-/* Animasi untuk sel desimal */
 .decimal-cell {
     transition: all 0.3s;
     position: relative;
@@ -789,18 +786,15 @@
     box-shadow: 0 5px 15px rgba(105, 240, 174, 0.3);
 }
 
-/* Animasi untuk label sukses */
 .success-label {
     animation: pulse 2s infinite;
 }
 
-/* Animasi untuk grid hasil */
 .result-grid > * {
     animation: fadeInDelayed 0.5s ease-out;
     animation-fill-mode: both;
 }
 
-/* Delay bertahap untuk sel grid hasil */
 .result-grid > *:nth-child(1) { animation-delay: 0.1s; }
 .result-grid > *:nth-child(2) { animation-delay: 0.2s; }
 .result-grid > *:nth-child(3) { animation-delay: 0.3s; }
@@ -811,7 +805,6 @@
 .result-grid > *:nth-child(8) { animation-delay: 0.8s; }
 .result-grid > *:nth-child(9) { animation-delay: 0.9s; }
 
-/* Animasi untuk bracket matrix */
 .matrix-bracket {
     animation: fadeIn 1s ease-out;
 }
@@ -826,7 +819,6 @@
     }
 }
 
-/* Efek shimmer untuk matrix input */
 .matrix-grid {
     background: linear-gradient(
         90deg,
@@ -851,12 +843,10 @@
     }
 }
 
-/* Animasi untuk konten yang muncul */
 .fade-in {
     animation: fadeInDelayed 0.6s ease-out;
 }
 
-/* Animasi untuk penghapusan */
 @keyframes fadeOut {
     from {
         opacity: 1;
@@ -871,7 +861,6 @@
 .fade-out {
     animation: fadeOut 0.3s ease-out;
 }
-/* ===== PESAN ERROR DAN SUKSES ===== */
 .error-message, 
 .success-message {
     padding: 15px;
