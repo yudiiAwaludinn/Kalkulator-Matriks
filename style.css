@@ -24,7 +24,7 @@
             background: rgba(30, 40, 60, 0.7);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: slideDown 0.8s ease-out;
+            animation: slideDown 1s ease-out;
         }
         
         h1 {
